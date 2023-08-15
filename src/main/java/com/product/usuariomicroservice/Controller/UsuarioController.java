@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.product.usuariomicroservice.Entity.UsuarioEntity;
 import com.product.usuariomicroservice.Modelos.Contact;
+import com.product.usuariomicroservice.Modelos.Tareas;
 import com.product.usuariomicroservice.Repository.UsuarioRepository;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -36,6 +37,12 @@ public class UsuarioController {
 	public Contact[] getContact(@PathVariable("id") String id ){
 		Contact[] contactos = restTemplate.getForObject("http://localhost:8080/contact/usuario/" + id, Contact[].class );
 		return contactos;
+	}
+	
+	@GetMapping("/pendientes/{id}")
+	public Tareas[] getTareas(@PathVariable("id") String id ){
+		Tareas[] tareas = restTemplate.getForObject("http://localhost:8082/tareas/usuario/" + id, Tareas[].class );
+		return tareas;
 	}
 
 	
